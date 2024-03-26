@@ -19,8 +19,17 @@ class userAuth(AbstractUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=True)
-
+    is_staff = models.BooleanField(default=False)
+    
+    #CredentialOptions
+    challenge = models.TextField(blank=True, null=True)
+    display_name = models.TextField(blank=True, null=True)
+    ukey = models.TextField(unique=False, blank=True, null=True)
+    username = models.TextField(unique=False)
+    credential_id = models.TextField(blank=True, null=True)
+    sign_count = models.IntegerField(blank=True, null=True)
+    public_key = models.TextField(blank=True, null=True)
+    
     objects = userAccountsManager()
 
     USERNAME_FIELD = 'email'
